@@ -50,7 +50,7 @@ fi
 # Canonical palette command (parent for future subcommands)
 zpalette() {
   local cmd="$1"
-  shift || true
+  (( $# )) && shift
 
   case "$cmd" in
     preview)
