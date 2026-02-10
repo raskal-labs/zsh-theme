@@ -68,10 +68,10 @@ _zth_render() {
     local ret_status=${1:-$?}
 
     local host="${HOST%%.*}"
-    local host_seg="%F{${PALETTE_ENV:-214}}%B${host}%b%f"
+    local host_seg="%F{${PALETTE_PROMPT_HOST:-$PALETTE_ENV}}%B${host}%b%f"
 
-    local glyph_color="${PALETTE_SUCCESS:-82}"
-    [[ $ret_status -ne 0 ]] && glyph_color="${PALETTE_ERROR:-196}"
+    local glyph_color="${PALETTE_PROMPT_OK:-$PALETTE_SUCCESS}"
+    [[ $ret_status -ne 0 ]] && glyph_color="${PALETTE_PROMPT_ERR:-$PALETTE_ERROR}"
 
     local zsh_path="${(%):-%~}"
     local anchor path_tail
@@ -87,9 +87,13 @@ _zth_render() {
         path_tail="${zsh_path[2,-1]}"
     fi
 
-    echo "%F{${PALETTE_FG:-255}}${host_seg} \
-%F{${PALETTE_SCOPE:-199}}%B${anchor}%b%f\
-%F{${PALETTE_PATH:-51}}${path_tail}%f \
+local prompt_fg="${PALETTE_PROMPT_FG:-$PALETTE_FG}"
+local prompt_anchor="${PALETTE_PROMPT_ANCHOR:-$PALETTE_SCOPE}"
+local prompt_path="${PALETTE_PROMPT_PATH:-$PALETTE_PATH}"
+
+echo "%F{${prompt_fg}}${host_seg} \
+%F{${prompt_anchor}}%B${anchor}%b%f\
+%F{${prompt_path}}${path_tail}%f \
 %F{${glyph_color}}%B❯%b%f \
 %{$reset_color%}"
 }
@@ -121,3 +125,7 @@ zth() {
     esac
 }
 _zth_load_palette
+
+# Optional tooling (safe to skip in minimal environments)
+[[ -f "$ZSH_THEME_ROOT/zsh-theme-tools.sh" ]] && \
+    source "$ZSH_THEME_ROOT/zsh-theme-tools.sh"
