@@ -40,6 +40,18 @@ export LS_COLORS="di=38;5;${PALETTE_DIR:-250}:fi=38;5;${PALETTE_FILE:-252}:ex=38
     [[ "$PALETTE_BG" == "0" ]] && printf "\e]11;#000000\a"
     alias ls='ls --color=auto'
     alias la='ls -la --color=auto'
+
+# Completion menu (semantic, palette-driven)
+zstyle ':completion:*' list-colors \
+  "di=38;5;${PALETTE_DIR:-250}" \
+  "fi=38;5;${PALETTE_FILE:-252}" \
+  "ex=38;5;${PALETTE_SUCCESS:-82}" \
+  "ln=38;5;${PALETTE_SCOPE:-199}" \
+  "ma=48;5;${PALETTE_SCOPE:-199};38;5;0"
+
+zstyle ':completion:*:descriptions' format '%F{${PALETTE_SUGGESTION:-244}}%d%f'
+zstyle ':completion:*:messages' format '%F{${PALETTE_ERROR:-196}}%d%f'
+zstyle ':completion:*:warnings' format '%F{${PALETTE_ERROR:-196}}%d%f'
 }
 
 _zth_load_palette() {
