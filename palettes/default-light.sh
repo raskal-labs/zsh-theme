@@ -1,0 +1,5 @@
+# Explicit default (light)
+PALETTE_FG=16
+PALETTE_BG=231
+PALETTE_CURSOR=16
+PALETTE_CONTRAST=light

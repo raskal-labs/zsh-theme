@@ -1,0 +1,13 @@
+PALETTE_ENV=3        # Yellow (System Identity)
+PALETTE_SCOPE=5      # Magenta (Anchor Point)
+PALETTE_PATH=6       # Cyan (Sub-directories)
+PALETTE_SUCCESS=2      # Green (Charged)
+PALETTE_ERROR=1        # Red (Critical)
+PALETTE_DIR=7        # White (Structural)
+PALETTE_FILE=7       # White (Data)
+PALETTE_STRING=3     # Yellow (Text)
+PALETTE_CONST=5      # Magenta (Values)
+PALETTE_INPUT=7      # White (Active Execution)
+PALETTE_SUGGESTION=8   # Grey (Ghost text)
+PALETTE_FG=7
+PALETTE_BG=0
