@@ -1,0 +1,39 @@
+# --- Shell / Zsh ---
+.zcompdump
+.zcompdump.*
+.zsh_history
+.zsh_sessions/
+.zshrc
+.zprofile
+.zshenv
+
+# --- Bash ---
+.bash_history
+.bashrc
+.profile
+
+# --- Runtime / caches ---
+.cache/
+.tmp/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# --- Editors ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- OS / tooling ---
+Thumbs.db
+._*
+
+# --- Local experiments / backups ---
+*.bak
+*.old
+
+# --- Never commit user state ---
+.env
+.env.*
+
