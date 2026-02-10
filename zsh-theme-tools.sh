@@ -13,7 +13,7 @@ for helper in \
   util.zsh \
   color-render.zsh \
   zcolor.sh \
-  palette-preview.zsh \
+  zpalette-preview.zsh \
   hud-grid.zsh
 do
   [[ -f "$ZSH_THEME_ROOT/helpers/$helper" ]] && \
@@ -32,7 +32,7 @@ if typeset -f zth >/dev/null; then
         local sub="${1:-preview}"
         shift || true
         case "$sub" in
-          preview) _zth_palette_preview "$@" ;;
+          preview) _zpalette_preview "$@" ;;
           *) command zth palette "$sub" "$@" ;;
         esac
         ;;
@@ -42,3 +42,31 @@ if typeset -f zth >/dev/null; then
     esac
   }
 fi
+
+# ------------------------------------------------------------------------------
+# Public CLI commands
+# ------------------------------------------------------------------------------
+
+# Canonical palette command (parent for future subcommands)
+zpalette() {
+  local cmd="$1"
+  shift || true
+
+  case "$cmd" in
+    preview)
+      _zpalette_preview "$@"
+      ;;
+    ""|-h|--help)
+      echo "usage: zpalette preview <palette>"
+      echo "       zpalette <command> [args]"
+      ;;
+    *)
+      echo "zpalette: unknown command '$cmd'"
+      return 1
+      ;;
+  esac
+}
+
+# Legacy / convenience aliases
+alias zcolour='zcolor'
+alias zpp='zpalette preview'
